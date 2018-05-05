@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Distancia a estadios</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="cerrarModal()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-content>
+    <ion-item *ngFor="let direction of directions" (click)="toggleItem()">
+      <h2>{{ direction.Name }}</h2>
+      <h3 item-end *ngIf="visible; then duration else distance"></h3>
+
+      <ng-template #distance>{{ direction.Distance }}</ng-template>
+      <ng-template #duration>{{ direction.Duration }}</ng-template>
+
+    </ion-item>
+  </ion-content>
+
+</ion-content>

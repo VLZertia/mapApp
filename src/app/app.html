@@ -1,0 +1,33 @@
+<ion-menu [content]="content" id="MyMenu">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-row>
+        <ion-title col>Menu</ion-title>
+        <button col-2 ion-button outline icon-only color="light" menuClose>
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+      </ion-row>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list> 
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+      <br/>
+      <div class="cerrarSesion">
+        <button ion-button outline color="danger" (click)="cerrarSesion()">
+          <ion-icon name="exit" padding></ion-icon> 
+          Cerrar sesion
+        </button>
+      </div>
+
+    </ion-list>
+
+    
+  </ion-content>
+  
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,20 @@
+page-home {
+    ion-list {
+        border-top: black 1px solid;     
+        border-bottom: black 1px solid;    
+        border-right: black 3px solid; 
+        border-left: black 40px solid; 
+    }
+    ion-item:hover {
+        background-color: black;
+        color: white;
+        img {
+            background-color: white;
+            border-radius: 25%;
+            padding: 1px;
+        }
+    }
+    img {
+        float: right;
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Turistas del balón",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
