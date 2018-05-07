@@ -26,7 +26,7 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Inicio', component: HomePage },
+      { title: 'Selector de país', component: HomePage },
       { title: 'Condiciones de uso', component: TermsPage },
 
     ];
