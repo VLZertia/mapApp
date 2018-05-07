@@ -21,7 +21,6 @@ import { ResetPasswordPageModule } from '../pages/reset-password/reset-password.
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { Camera } from '@ionic-native/camera';
 
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { TermsPage } from '../pages/terms/terms';
@@ -70,7 +69,6 @@ export const firebaseConfig = {
     SplashScreen,
     Geolocation,
     GoogleMaps,
-    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ]
 })
