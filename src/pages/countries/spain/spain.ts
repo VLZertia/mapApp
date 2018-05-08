@@ -216,6 +216,7 @@ export class SpainPage {
         console.log(error);
       }
     )
+    console.log(this.coords)
   }
 
   addMarker(map) {
