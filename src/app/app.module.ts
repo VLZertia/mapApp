@@ -6,9 +6,13 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 
 import { HomePage } from '../pages/home/home';
+
 import { SpainPage } from '../pages/countries/spain/spain';
 import { EnglandPage } from '../pages/countries/england/england';
 import { ItalyPage } from '../pages/countries/italy/italy';
+
+import { TermsPage } from '../pages/terms/terms';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,7 +27,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
 
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { TermsPage } from '../pages/terms/terms';
+
+import { Camera } from '@ionic-native/camera';
 
 
 export const firebaseConfig = {
@@ -70,6 +75,7 @@ export const firebaseConfig = {
     Geolocation,
     GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera
     ]
 })
 export class AppModule {}
