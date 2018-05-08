@@ -210,13 +210,14 @@ export class SpainPage {
       this.coords.lng = res.coords.longitude;
 
       this.loadMap();
+
+      console.log(this.coords);
     })
     .catch(
       (error)=>{
         console.log(error);
       }
     )
-    console.log(this.coords)
   }
 
   addMarker(map) {
