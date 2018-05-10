@@ -1,6 +1,13 @@
 page-terms {
+    ion-content {
+        background-color: #61EA9A;
+    }
     h1 {
-        background-color: gray;
+        background-color: color($colors, color);
+        padding: 7px;
         margin: 0px;
+    }
+    button {
+        float: left;
     }
 }

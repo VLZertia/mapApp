@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 
 import { HomePage } from '../pages/home/home';
 import { TermsPage } from '../pages/terms/terms';
+import { InformationPage } from '../pages/information/information';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +15,7 @@ import { TermsPage } from '../pages/terms/terms';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = InformationPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -26,6 +27,7 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
+      { title: 'Inicio', component: InformationPage },
       { title: 'Selector de país', component: HomePage },
       { title: 'Condiciones de uso', component: TermsPage },
 

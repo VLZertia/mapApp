@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 
 import { HomePage } from '../pages/home/home';
+import { InformationPage } from '../pages/information/information';
 
 import { SpainPage } from '../pages/countries/spain/spain';
 import { EnglandPage } from '../pages/countries/england/england';
@@ -32,7 +33,7 @@ import { Camera } from '@ionic-native/camera';
 
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAnRS5q9sl-2Dij29_kapls6eUUAsgZI_M",
+  apiKey: "AIzaSyB1HWVnbXpopTqGYDIOt2pdUdhsDbYSJFE",
   authDomain: "logueomapapp.firebaseapp.com",
   databaseURL: "https://logueomapapp.firebaseio.com",
   projectId: "logueomapapp",
@@ -43,6 +44,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
+    InformationPage,
     HomePage,
     TermsPage,
     SpainPage,
@@ -63,6 +65,7 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
+    InformationPage,
     TermsPage,
     LoginPage,
     SpainPage,
