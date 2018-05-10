@@ -30,35 +30,35 @@ export class SpainPage {
       "Lat": 41.380896, 
       "Long": 2.1206311,
       "Img": "http://tourtravelandmore.com/wp-content/uploads/2016/10/barcelona-footbal-fanatics-private-tour.jpg",
-      "Team": "Fútbol Club Barcelona"
+      "Team": "Fútbol Club Barcelona",
     },
     {
       "Name": "Santiago Bernabeu",
       "Lat": 40.4530541, 
       "Long": -3.6883445,
       "Img": "https://images.musement.com/default/0001/28/madrid-highlights-tickets-and-guided-visit-of-santiago-bernabeu-stadium_header-27388.jpeg?w=600&h=315&crop=edges",
-      "Team": "Real Madrid Club de Fútbol"
+      "Team": "Real Madrid Club de Fútbol",
     },
     {
       "Name": "Wanda Metropolitano",
       "Lat": 40.4362517, 
       "Long": -3.6003323,
       "Img": "https://assets.change.org/photos/9/wm/up/KTWMupUPmlNDdVn-800x450-noPad.jpg?1513528430",
-      "Team": "Club Atlético de Madrid"
+      "Team": "Club Atlético de Madrid",
     },
     {
       "Name": "Mestalla",
       "Lat": 39.4746042, 
       "Long": -0.358225,
       "Img": "https://i.pinimg.com/originals/47/3a/77/473a7769ca2d8649d61fac974f8c6ae6.jpg",
-      "Team": "Valencia Club de Fútbol"
+      "Team": "Valencia Club de Fútbol",
     },
     {
       "Name": "Ramón Sánchez Pizjuán",
       "Lat": 37.3840655, 
       "Long": -5.9706902,
       "Img": "http://sextoanillo.com/wp-content/uploads/2016/09/2015_0825_12533400.jpg",
-      "Team": "Sevilla Fútbol Club"
+      "Team": "Sevilla Fútbol Club",
     },
     {
       "Name": "Balaidos",
@@ -231,7 +231,7 @@ export class SpainPage {
       var infoWindow = new google.maps.InfoWindow();
       (function (marker, stadium) {
         google.maps.event.addListener(marker, 'click', function(e) {
-          var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>' + stadium.Team + '</p>' + '<img src="'+ stadium.Img + '" width="250px" height="120px"/><br/><button ion-button full outline padding>Más información</button>';
+          var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>' + stadium.Team + '</p>' + '<img src="'+ stadium.Img + '" width="250px" height="120px"/><br/><br/><button ion-button full outline padding>Más información</button>';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
         });
