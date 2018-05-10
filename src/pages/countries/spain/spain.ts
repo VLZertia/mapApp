@@ -183,6 +183,7 @@ export class SpainPage {
     this.menu = menuController;
     this.menu.enable(true, "MyMenu")
     })
+
   }
  
   loadMap() {
@@ -243,9 +244,12 @@ export class SpainPage {
     console.log('ionViewDidLoad España');
   }
 
+
+
   distanciaEstadios() {
     let mimodal = this.modalCtrl.create('ModalDistanciaEstadiosPage', {coords: this.coords, stadiums: this.stadiums})    
     mimodal.present();
+    console.log(this.coords);
   }
 
 }
