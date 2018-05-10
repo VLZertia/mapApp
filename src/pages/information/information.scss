@@ -2,6 +2,9 @@ page-information {
     button {
         float: left;
     }
+    h5 strong, p strong {
+        color: green;
+    }
     .logo {
         width:35%;
         margin: auto;

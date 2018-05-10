@@ -1,6 +1,8 @@
 page-terms {
     ion-content {
-        background-color: #61EA9A;
+        .scroll-content {
+            background-color: RGBA(90, 249, 156, 0.6);
+        }
     }
     h3 {
         background-color: color($colors, color);
@@ -11,4 +13,5 @@ page-terms {
     button {
         float: left;
     }
+    
 }
