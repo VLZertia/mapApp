@@ -16,6 +16,11 @@ page-information {
     }
     div p {
         padding: 1px;
+
+    }
+    div.footer p strong{
+        color: black;
+        text-shadow: -1px -1px 1px #61EA9A, 1px 1px 1px #61EA9A, -1px 1px 1px #61EA9A, 1px -1px 1px #61EA9A;
     }
     .footer {
         width: 80%;

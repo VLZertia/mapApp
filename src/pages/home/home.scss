@@ -17,4 +17,14 @@ page-home {
     img {
         float: right;
     }
+    h2 {
+        padding: 4px;
+        background-image: url("../assets/imgs/footer.png");
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 0px;
+        text-shadow: -1px -1px 1px #61EA9A, 1px 1px 1px #61EA9A, -1px 1px 1px #61EA9A, 1px -1px 1px #61EA9A;
+        border-top: black 1px solid;
+        border-right: black 3px solid;
+    }
 }
