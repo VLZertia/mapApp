@@ -14,7 +14,13 @@ page-information {
     p {
         padding: 0px 20px;
     }
-    footer {
-        margin-top: 200px;
+    div p {
+        padding: 1px;
+    }
+    .footer {
+        width: 80%;
+        margin: 200px auto 0px;
+        background-image: url("../../assets/imgs/footer.png");
+        border-radius: 50px;
     }
 }
