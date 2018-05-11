@@ -20,7 +20,9 @@ page-information {
     .footer {
         width: 80%;
         margin: 200px auto 0px;
-        background-image: url("../../assets/imgs/footer.png");
+        background-image: url("../assets/imgs/footer.png");
+        background-size: cover;
+        background-position: center;
         border-radius: 50px;
     }
 }
