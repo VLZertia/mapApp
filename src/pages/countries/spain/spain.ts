@@ -222,7 +222,7 @@ export class SpainPage {
       title: 'Mi posición'
     })
     this.addMarker(this.mapSpain);
-    
+
   };
 
   obtenerPosicion():any {
@@ -240,7 +240,9 @@ export class SpainPage {
   }
 
   addMarker(map) {
+
     for (var i = 0; i < this.stadiums.length; i++) {
+
       var stadium = this.stadiums[i];
       var marker = new google.maps.Marker({
         position: {lat: stadium.Lat, lng: stadium.Long},
@@ -251,20 +253,80 @@ export class SpainPage {
       var infoWindow = new google.maps.InfoWindow();
       (function (marker, stadium) {
         google.maps.event.addListener(marker, 'click', function(e) {
-          var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>&nbsp' + stadium.Team + '&nbsp<img src="' + stadium.Shield + '" width="25px" height="25px"/></p>' + '<img src="'+ stadium.Img + '" width="250px" height="120px"/><br/><br/><button ion-button full outline padding>Más información</button>';
+          var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>&nbsp' + stadium.Team + '&nbsp<img src="' 
+                        + stadium.Shield + '" width="25px" height="25px"/></p>' + '<img src="'+ stadium.Img 
+                        + '" width="250px" height="120px"/><br/><br/><button ion-button full outline padding>Más información</button>';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
         });
-      })(marker, stadium)
+      })(marker, stadium);
+
+
+      var objConfigDR = {
+        map: this.mapSpain
+      }
+      var objConfigDS = {
+        origin: this.coords,
+        destination: {lat: stadium.Lat, lng: stadium.Long},
+        travelMode: google.maps.TravelMode.DRIVING
+      }  
+  
+      var ds = new google.maps.DirectionsService ( ); 
+      var dr = new google.maps.DirectionsRenderer (
+        objConfigDR
+      );
+  
+      
+  
+      marker.addListener('click', function() {
+
+        ds.route ( objConfigDS, fnRutear );
+
+        function fnRutear ( resultados, status ) {
+          if( status == 'OK' ) {
+            dr.setDirections( resultados );
+          }else{
+            alert( 'Error' + status );
+          }
+        }
+      });
+      
     };
 
   }
+
+  /*
+  rutaEstadios () {
+    
+    var objConfigDR = {
+      map: this.mapSpain
+    }
+    var objConfigDS = {
+      origin: this.coords,
+      destination: 'Madrid, España',
+      travelMode: google.maps.TravelMode.DRIVING
+    }  
+
+    var ds = new google.maps.DirectionsService ( ); 
+    var dr = new google.maps.DirectionsRenderer (
+      objConfigDR
+    );
+
+    ds.route ( objConfigDS, fnRutear );
+
+    function fnRutear ( resultados, status ) {
+      if( status == 'OK' ) {
+        dr.setDirections( resultados );
+      }else{
+        alert( 'Error' + status );
+      }
+    }
+}
+*/
     
   ionViewDidLoad() {
     console.log('ionViewDidLoad España');
   }
-
-
 
   distanciaEstadios() {
     let mimodal = this.modalCtrl.create('ModalDistanciaEstadiosPage', {coords: this.coords, stadiums: this.stadiums})    

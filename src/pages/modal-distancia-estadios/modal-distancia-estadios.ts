@@ -44,7 +44,6 @@ export class ModalDistanciaEstadiosPage {
     var resultDirections = this.directions;
     var stadiumsL = this.stadiums;
 
-    console.log(this.coords)
     for (var x = 0; x < stadiumsL.length; x ++) {
     
       var posicion = new google.maps.LatLng(stadiumsL[x].Lat, stadiumsL[x].Long);  
