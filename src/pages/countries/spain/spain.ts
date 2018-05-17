@@ -4,7 +4,7 @@ import {
   NavController, 
   NavParams, 
   ModalController, 
-  MenuController 
+  MenuController
 } from 'ionic-angular';
 
 import { Geolocation } from '@ionic-native/geolocation';
@@ -20,7 +20,7 @@ declare var google: any;
 export class SpainPage {
 
   menu: any;
-
+  directionsRenderer:any;
   mapSpain: any;
   coords: any = { lat: 0, lng: 0 };
   
@@ -221,7 +221,7 @@ export class SpainPage {
       position: this.coords,
       title: 'Mi posición'
     })
-    this.addMarker(this.mapSpain);
+    this.addMarker(this.mapSpain, this.coords, this.directionsRenderer);
 
   };
 
@@ -239,60 +239,65 @@ export class SpainPage {
     )
   }
 
-  addMarker(map) {
-
+  addMarker(map, currentCoords, directionsRenderer) {
+  
     for (var i = 0; i < this.stadiums.length; i++) {
 
       var stadium = this.stadiums[i];
+     
       var marker = new google.maps.Marker({
         position: {lat: stadium.Lat, lng: stadium.Long},
         map,
         icon: 'assets/imgs/estadio.png' 
       });
-           
+
       var infoWindow = new google.maps.InfoWindow();
       (function (marker, stadium) {
+
         google.maps.event.addListener(marker, 'click', function(e) {
+
           var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>&nbsp' + stadium.Team + '&nbsp<img src="' 
                         + stadium.Shield + '" width="25px" height="25px"/></p>' + '<img src="'+ stadium.Img 
                         + '" width="250px" height="120px"/><br/><br/><button ion-button full outline padding>Más información</button>';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
-        });
-      })(marker, stadium);
 
-
-      var objConfigDR = {
-        map: this.mapSpain
-      }
-      var objConfigDS = {
-        origin: this.coords,
-        destination: {lat: stadium.Lat, lng: stadium.Long},
-        travelMode: google.maps.TravelMode.DRIVING
-      }  
-  
-      var ds = new google.maps.DirectionsService ( ); 
-      var dr = new google.maps.DirectionsRenderer (
-        objConfigDR
-      );
-  
-      
-  
-      marker.addListener('click', function() {
-
-        ds.route ( objConfigDS, fnRutear );
-
-        function fnRutear ( resultados, status ) {
-          if( status == 'OK' ) {
-            dr.setDirections( resultados );
-          }else{
-            alert( 'Error' + status );
+          var objConfigDR = {
+            map: map
           }
-        }
-      });
-      
-    };
 
+          var objConfigDS = {
+            "origin": currentCoords,
+            "destination": {
+              "lat": stadium.Lat,
+              "lng": stadium.Long
+              },
+            "travelMode": google.maps.TravelMode.DRIVING          }  
+
+          var ds = new google.maps.DirectionsService ( ); 
+
+          if(directionsRenderer != null )
+          {
+            directionsRenderer.setMap(null);  
+          }
+
+          directionsRenderer = new google.maps.DirectionsRenderer (
+            objConfigDR
+          );
+
+
+          ds.route ( objConfigDS, function(resultados, status){
+            if( status == 'OK' ) {
+              directionsRenderer.setDirections( resultados );
+            }else{
+              alert( 'Error' + status );
+            }            
+
+          });
+        }); 
+       
+      })(marker, stadium);
+    };
   }
 
   /*
