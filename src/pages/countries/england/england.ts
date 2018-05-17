@@ -20,7 +20,7 @@ declare var google: any;
 export class EnglandPage {
 
   menu: any;
-
+  directionsRenderer:any;
   mapEngland: any;
   coords: any = { lat: 0, lng: 0 };
   
@@ -219,7 +219,7 @@ export class EnglandPage {
       position: this.coords,
       title: 'Mi posición'
     })
-    this.addMarker(this.mapEngland);
+    this.addMarker(this.mapEngland, this.coords, this.directionsRenderer);
     
   };
 
@@ -237,7 +237,7 @@ export class EnglandPage {
     )
   }
 
-  addMarker(map) {
+  addMarker(map, currentCoords, directionsRenderer) {
     for (var i = 0; i < this.stadiums.length; i++) {
       var stadium = this.stadiums[i];
       var marker = new google.maps.Marker({
@@ -254,6 +254,39 @@ export class EnglandPage {
                         + '" width="250px" height="120px"/><br/><br/><button ion-button full outline padding>Más información</button>';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
+      
+
+        var objConfigDR = {
+          map: map
+        }
+
+        var objConfigDS = {
+          "origin": currentCoords,
+          "destination": {
+            "lat": stadium.Lat,
+            "lng": stadium.Long
+            },
+          "travelMode": google.maps.TravelMode.DRIVING          }  
+
+        var ds = new google.maps.DirectionsService ( ); 
+
+        if(directionsRenderer != null )
+        {
+          directionsRenderer.setMap(null);  
+        }
+
+        directionsRenderer = new google.maps.DirectionsRenderer (
+          objConfigDR
+        );
+
+
+          ds.route ( objConfigDS, function(resultados, status){
+            if( status == 'OK' ) {
+              directionsRenderer.setDirections( resultados );
+            }else{
+              alert( 'Error' + status );
+            }            
+          });
         });
       })(marker, stadium)
     };

@@ -20,7 +20,7 @@ declare var google: any;
 export class ItalyPage {
 
   menu: any;
-
+  directionsRenderer:any;
   mapItaly: any;
   coords: any = { lat: 0, lng: 0 };
   
@@ -69,7 +69,7 @@ export class ItalyPage {
       "Name": "Artemio Franchi",
       "Lat": 43.780835, 
       "Long": 11.282572,
-      "Img": "http://www.football-wallpapers.com/w/clubs/fiorentina/artemio-franchi-wallpaper.jpg",
+      "Img": "https://i.pinimg.com/originals/67/fa/0e/67fa0e532cd63fd6d17c331d9d9bd97d.jpg",
       "Team": "Associazione Calcio Fiorentina",
       "Shield": "https://3.bp.blogspot.com/-X6iRKnF8Cuw/WEIXJCmLgTI/AAAAAAAAEfs/eb3W1nw0faM0sXCi1g5ymSNAU_Xj0RpsQCEw/s1600/escudo1.png"
     },
@@ -203,7 +203,7 @@ export class ItalyPage {
       position: this.coords,
       title: 'Mi posición'
     })
-    this.addMarker(this.mapItaly);
+    this.addMarker(this.mapItaly, this.coords, this.directionsRenderer);
     
   };
 
@@ -221,7 +221,7 @@ export class ItalyPage {
     )
   }
 
-  addMarker(map) {
+  addMarker(map, currentCoords, directionsRenderer) {
     for (var i = 0; i < this.stadiums.length; i++) {
       var stadium = this.stadiums[i];
       var marker = new google.maps.Marker({
@@ -238,6 +238,38 @@ export class ItalyPage {
                         + '" width="250px" height="120px"/><br/><br/><button ion-button full outline padding>Más información</button>';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
+
+          var objConfigDR = {
+            map: map
+          }
+  
+          var objConfigDS = {
+            "origin": currentCoords,
+            "destination": {
+              "lat": stadium.Lat,
+              "lng": stadium.Long
+              },
+            "travelMode": google.maps.TravelMode.DRIVING          }  
+  
+          var ds = new google.maps.DirectionsService ( ); 
+  
+          if(directionsRenderer != null )
+          {
+            directionsRenderer.setMap(null);  
+          }
+  
+          directionsRenderer = new google.maps.DirectionsRenderer (
+            objConfigDR
+          );
+  
+  
+            ds.route ( objConfigDS, function(resultados, status){
+              if( status == 'OK' ) {
+                directionsRenderer.setDirections( resultados );
+              }else{
+                alert( 'Error' + status );
+              }            
+            });
         });
       })(marker, stadium)
     };

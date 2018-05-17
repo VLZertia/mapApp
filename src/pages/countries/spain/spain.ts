@@ -23,7 +23,7 @@ export class SpainPage {
   directionsRenderer:any;
   mapSpain: any;
   coords: any = { lat: 0, lng: 0 };
-  
+
   stadiums = [
     {
       "Name": "Camp Nou",
@@ -244,7 +244,6 @@ export class SpainPage {
     for (var i = 0; i < this.stadiums.length; i++) {
 
       var stadium = this.stadiums[i];
-     
       var marker = new google.maps.Marker({
         position: {lat: stadium.Lat, lng: stadium.Long},
         map,
@@ -254,6 +253,8 @@ export class SpainPage {
       var infoWindow = new google.maps.InfoWindow();
       (function (marker, stadium) {
 
+        var showRoute:boolean = true;
+
         google.maps.event.addListener(marker, 'click', function(e) {
 
           var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>&nbsp' + stadium.Team + '&nbsp<img src="' 
@@ -261,7 +262,7 @@ export class SpainPage {
                         + '" width="250px" height="120px"/><br/><br/><button ion-button full outline padding>Más información</button>';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
-
+        
           var objConfigDR = {
             map: map
           }
@@ -284,51 +285,24 @@ export class SpainPage {
           directionsRenderer = new google.maps.DirectionsRenderer (
             objConfigDR
           );
-
-
+          
+          if(showRoute) {
           ds.route ( objConfigDS, function(resultados, status){
             if( status == 'OK' ) {
               directionsRenderer.setDirections( resultados );
             }else{
               alert( 'Error' + status );
             }            
-
           });
+          } 
         }); 
        
       })(marker, stadium);
+
     };
+
   }
-
-  /*
-  rutaEstadios () {
-    
-    var objConfigDR = {
-      map: this.mapSpain
-    }
-    var objConfigDS = {
-      origin: this.coords,
-      destination: 'Madrid, España',
-      travelMode: google.maps.TravelMode.DRIVING
-    }  
-
-    var ds = new google.maps.DirectionsService ( ); 
-    var dr = new google.maps.DirectionsRenderer (
-      objConfigDR
-    );
-
-    ds.route ( objConfigDS, fnRutear );
-
-    function fnRutear ( resultados, status ) {
-      if( status == 'OK' ) {
-        dr.setDirections( resultados );
-      }else{
-        alert( 'Error' + status );
-      }
-    }
-}
-*/
-    
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad España');
   }
