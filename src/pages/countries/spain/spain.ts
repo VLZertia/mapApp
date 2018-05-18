@@ -258,7 +258,7 @@ export class SpainPage {
         google.maps.event.addListener(marker, 'click', function(e) {
 
           var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>&nbsp' + stadium.Team + '&nbsp<img src="' 
-                        + stadium.Shield + '" width="25px" height="25px"/></p>' + '<img src="'+ stadium.Img 
+                        + stadium.Shield + '" width="25px" height="25px"/></p>' + '<img class="estadio" src="'+ stadium.Img 
                         + '" width="250px" height="120px"/><br/><br/>';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
