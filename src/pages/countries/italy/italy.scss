@@ -23,7 +23,11 @@ page-italy {
     }
     
     .gm-style .gm-style-iw {
+        
         text-align: center;
+        border-top: black 1px double;
+        border-bottom: black 2px double;
+        border-radius: 2px 2px 18px 18px;
 
         p {
             text-align: left;

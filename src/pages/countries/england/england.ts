@@ -251,13 +251,14 @@ export class EnglandPage {
         google.maps.event.addListener(marker, 'click', function(e) {
           var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>&nbsp' + stadium.Team + '&nbsp<img src="' 
                         + stadium.Shield + '" width="25px" height="25px"/></p>' + '<img src="'+ stadium.Img 
-                        + '" width="250px" height="120px"/><br/><br/><button ion-button full outline padding>Más información</button>';
+                        + '" width="250px" height="120px"/><br/><br/>';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
       
 
         var objConfigDR = {
-          map: map
+          map: map,
+          suppressMarkers: true,
         }
 
         var objConfigDS = {
