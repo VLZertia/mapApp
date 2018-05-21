@@ -1,6 +1,13 @@
 page-login{
+
     input:focus {
-    background-color: RGB(240,240,240);
+    background-color: black;
+    color: white;
     border-radius: 5px;
-}
+    padding: 1px;
+    }
+
+    div a .button-inner {
+        color: #4AD283;
+    }
 }
