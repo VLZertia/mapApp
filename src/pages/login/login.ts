@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 
-import { HomePage } from '../home/home';
+import { InformationPage } from '../information/information';
 
 
 @IonicPage()
@@ -48,7 +48,7 @@ export class LoginPage {
 
     this.afAuth.auth.signInWithEmailAndPassword(this.myForm.value.email, this.myForm.value.password).then(() => {
       console.log("User logging");
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot(InformationPage);
     }, (err) => {
       this.loading.dismiss().then( () => {
         let alert = this.alertCtrl.create({
