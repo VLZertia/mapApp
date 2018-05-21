@@ -33,5 +33,13 @@ page-italy {
             text-align: left;
         }
     }
+
+    img.estadio {
+        transition: transform .2s;
+    }
+    img.estadio:hover {
+        padding: 5px;
+        transform: scale(1.2); 
+    }
         
 }

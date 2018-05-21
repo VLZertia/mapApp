@@ -34,8 +34,13 @@ page-spain {
             text-align: left;
         }
     }
+
+    img.estadio {
+        transition: transform .2s;
+    }
     img.estadio:hover {
-        transform: scale(1.1); 
+        padding: 5px;
+        transform: scale(1.2); 
     }
     
 }
