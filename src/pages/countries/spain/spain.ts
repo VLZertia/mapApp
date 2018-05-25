@@ -205,7 +205,21 @@ export class SpainPage {
     })
 
   }
- 
+
+  obtenerPosicion():any {
+    this.geolocation.getCurrentPosition().then(res => {
+      this.coords.lat = res.coords.latitude;
+      this.coords.lng = res.coords.longitude;
+
+      this.loadMap();
+    })
+    .catch(
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+
   loadMap() {
 
     var latlng = new google.maps.LatLng(40, -4);
@@ -225,24 +239,8 @@ export class SpainPage {
 
   };
 
-  obtenerPosicion():any {
-    this.geolocation.getCurrentPosition().then(res => {
-      this.coords.lat = res.coords.latitude;
-      this.coords.lng = res.coords.longitude;
-
-      this.loadMap();
-    })
-    .catch(
-      (error)=>{
-        console.log(error);
-      }
-    )
-  }
-
   addMarker(map, currentCoords, directionsRenderer) {
-  
     for (var i = 0; i < this.stadiums.length; i++) {
-
       var stadium = this.stadiums[i];
       var marker = new google.maps.Marker({
         position: {lat: stadium.Lat, lng: stadium.Long},
@@ -252,11 +250,8 @@ export class SpainPage {
 
       var infoWindow = new google.maps.InfoWindow();
       (function (marker, stadium) {
-
         var showRoute:boolean = true;
-
         google.maps.event.addListener(marker, 'click', function(e) {
-
           var content = '<h1>' + stadium.Name + '</h1><hr/>' + '<p><strong>Equipo: </strong>&nbsp' + stadium.Team + '&nbsp<img src="' 
                         + stadium.Shield + '" width="25px" height="25px"/></p>' + '<img class="estadio" src="'+ stadium.Img 
                         + '" width="250px" height="120px"/><br/><br/>';
@@ -267,22 +262,17 @@ export class SpainPage {
             map: map,
             suppressMarkers: true,
           }
-
           var objConfigDS = {
             "origin": currentCoords,
-            "destination": {
-              "lat": stadium.Lat,
-              "lng": stadium.Long
-              },
-            "travelMode": google.maps.TravelMode.DRIVING          }  
-
+            "destination": {"lat": stadium.Lat, "lng": stadium.Long},
+            "travelMode": google.maps.TravelMode.DRIVING     
+          }  
           var ds = new google.maps.DirectionsService ( ); 
-
+          
           if(directionsRenderer != null )
           {
             directionsRenderer.setMap(null);  
           }
-
           directionsRenderer = new google.maps.DirectionsRenderer (
             objConfigDR
           );
@@ -297,11 +287,8 @@ export class SpainPage {
           });
           } 
         }); 
-       
       })(marker, stadium);
-
     };
-
   }
   
   ionViewDidLoad() {

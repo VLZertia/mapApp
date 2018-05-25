@@ -51,9 +51,8 @@ export class ResetPasswordPage {
       });
       alert.present();
     }, (error) => {
-      var errorMessage: string = error.message;
       let errorAlert = this.alertCtrl.create({
-        message: errorMessage,
+        message: "Este correo no existe o tiene un fallo de escritura",
         buttons: [
           {
             text: "Ok",

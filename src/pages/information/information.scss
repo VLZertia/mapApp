@@ -31,4 +31,16 @@ page-information {
         background-position: center;
         border-radius: 50px;
     }
+
+    .contacto {
+        background-color: #4AD283;
+        font-size: 12px;
+        text-align: center;
+        width: 65%;
+        margin: 30px auto;
+        line-height: 1px;
+        p {
+            float: left;
+        }
+    }
 }
